@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: liteshop-registry
+  profiles:
+    active: dev
+
+info:
+    project:
+        version: #project.version#

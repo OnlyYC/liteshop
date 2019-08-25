@@ -1,0 +1,25 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: liteshop-registry
+
+eureka:
+    instance:
+        appname: liteshop-registry
+        instanceId: LiteshopRegistry:${spring.application.instance-id:${random.value}}
+        prefer-ip-address: true
+    client:
+        enabled: true
+        fetch-registry: false
+        register-with-eureka: false
+        instance-info-replication-interval-seconds: 10
+        registry-fetch-interval-seconds: 10
+        service-url:
+#            defaultZone: http://admin:${spring.security.user.password:admin}@localhost:${server.port}/eureka/
+            defaultZone: http://localhost:${server.port}/eureka/
+    server:
+        # see discussion about enable-self-preservation:
+        # https://github.com/jhipster/generator-jhipster/issues/3654
+        enable-self-preservation: false
+        peer-node-read-timeout-ms: 1000

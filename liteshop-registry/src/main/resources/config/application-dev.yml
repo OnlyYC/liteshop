@@ -1,0 +1,17 @@
+server:
+  port: 8761
+spring:
+  profiles:
+    active: dev
+  application:
+    name: liteshop-registry
+
+
+
+eureka:
+  instance:
+      appname: liteshop-registry
+      instanceId: LiteshopRegistry:${spring.application.instance-id:${random.value}}
+      prefer-ip-address: true
+  server:
+    enable-self-preservation: false
