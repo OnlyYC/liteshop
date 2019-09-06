@@ -6,7 +6,9 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.liaoyb.liteshop.common.domain.Page;
 import com.liaoyb.liteshop.common.domain.PageResult;
+import com.liaoyb.liteshop.goods.portal.dto.GoodsInfoDto;
 import com.liaoyb.liteshop.goods.portal.dto.GoodsSearchDto;
+import com.liaoyb.liteshop.goods.portal.dto.GoodsSearchResultDto;
 import com.liaoyb.liteshop.goods.portal.entity.Goods;
 import com.liaoyb.liteshop.goods.portal.mapper.GoodsMapper;
 import com.liaoyb.liteshop.goods.portal.service.GoodsServce;
@@ -24,7 +26,8 @@ import java.util.Optional;
 public class GoodsServceImpl extends ServiceImpl<GoodsMapper, Goods> implements GoodsServce {
 
     @Override
-    public PageResult<Goods> search(GoodsSearchDto search, Page page) {
+    public PageResult<GoodsSearchResultDto> search(GoodsSearchDto search, Page page) {
+        //todo 根据分类id搜索
         String sortColumn = Optional.ofNullable(search.getSort())
                 .map(sort ->sort.startsWith("_") ? sort.substring(1) : sort)
                 .orElse(null);
@@ -40,6 +43,12 @@ public class GoodsServceImpl extends ServiceImpl<GoodsMapper, Goods> implements 
                 .orderBy(StringUtils.isNotBlank(search.getSort()), isAsc, sortColumn);
 
         IPage<Goods> goodsPage = this.page(page.toPage(), queryWrapper);
-        return PageResult.of(goodsPage).map(self -> self);
+        return PageResult.of(goodsPage).map(GoodsSearchResultDto::of);
+    }
+
+    @Override
+    public GoodsInfoDto getGoodsInfo(long goodsId) {
+        Goods goods = this.getById(goodsId);
+        return GoodsInfoDto.of(goods);
     }
 }

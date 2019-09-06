@@ -1,25 +1,18 @@
-package com.liaoyb.liteshop.goods.portal.entity;
+package com.liaoyb.liteshop.goods.portal.dto;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.liaoyb.liteshop.common.domain.AbstractAuditingEntity;
+import com.liaoyb.liteshop.goods.portal.entity.Goods;
 import lombok.Data;
+import org.springframework.beans.BeanUtils;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 商品
+ * 商品详情
  *
  * @author liaoyb
  */
-@TableName("liteshop_goods")
 @Data
-public class Goods extends AbstractAuditingEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    @TableId(type = IdType.AUTO)
+public class GoodsInfoDto {
     private Long id;
     /**
      * 商品名称
@@ -42,18 +35,6 @@ public class Goods extends AbstractAuditingEntity implements Serializable {
      */
     private String goodsSn;
     /**
-     * 上架状态：1->上架、2->下架
-     */
-    private Integer publishStatus;
-    /**
-     * 审核状态：0->未审核；1->审核通过；2->审核不通过
-     */
-    private Integer verifyStatus;
-    /**
-     * 库存
-     */
-    private Integer stock;
-    /**
      * 单位
      */
     private String unit;
@@ -73,4 +54,21 @@ public class Goods extends AbstractAuditingEntity implements Serializable {
      * 移动端网页详情
      */
     private String detailMobileHtml;
+    /**
+     * 商品分类id
+     */
+    private Integer goodsCategoryId;
+    /**
+     * 商品分类名称
+     */
+    private String goodsCategoryName;
+
+    public static GoodsInfoDto of(Goods goods) {
+        if (goods == null) {
+            return null;
+        }
+        GoodsInfoDto goodsInfoDto = new GoodsInfoDto();
+        BeanUtils.copyProperties(goods, goodsInfoDto);
+        return goodsInfoDto;
+    }
 }

@@ -3,7 +3,9 @@ package com.liaoyb.liteshop.goods.portal.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.liaoyb.liteshop.common.domain.Page;
 import com.liaoyb.liteshop.common.domain.PageResult;
+import com.liaoyb.liteshop.goods.portal.dto.GoodsInfoDto;
 import com.liaoyb.liteshop.goods.portal.dto.GoodsSearchDto;
+import com.liaoyb.liteshop.goods.portal.dto.GoodsSearchResultDto;
 import com.liaoyb.liteshop.goods.portal.entity.Goods;
 
 /**
@@ -19,5 +21,13 @@ public interface GoodsServce extends IService<Goods> {
      * @param page   分页参数
      * @return 商品搜索的分页结果
      */
-    PageResult<Goods> search(GoodsSearchDto search, Page page);
+    PageResult<GoodsSearchResultDto> search(GoodsSearchDto search, Page page);
+
+    /**
+     * 获取商品详情
+     *
+     * @param goodsId 商品id
+     * @return 商品详情
+     */
+    GoodsInfoDto getGoodsInfo(long goodsId);
 }
