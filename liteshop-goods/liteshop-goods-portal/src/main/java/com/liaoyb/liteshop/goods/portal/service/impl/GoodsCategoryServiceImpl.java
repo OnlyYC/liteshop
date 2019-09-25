@@ -1,7 +1,7 @@
 package com.liaoyb.liteshop.goods.portal.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.liaoyb.liteshop.goods.portal.dto.GoodsCategoryTreeDto;
+import com.liaoyb.liteshop.goods.portal.model.GoodsCategoryTreeDto;
 import com.liaoyb.liteshop.goods.portal.entity.GoodsCategory;
 import com.liaoyb.liteshop.goods.portal.mapper.GoodsCategoryMapper;
 import com.liaoyb.liteshop.goods.portal.service.GoodsCategoryService;

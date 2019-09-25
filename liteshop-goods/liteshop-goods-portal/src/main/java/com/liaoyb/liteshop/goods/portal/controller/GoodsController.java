@@ -6,10 +6,9 @@ import com.liaoyb.liteshop.common.domain.PageMeta;
 import com.liaoyb.liteshop.common.domain.PageResult;
 import com.liaoyb.liteshop.common.domain.Response;
 import com.liaoyb.liteshop.common.util.ResponseUtil;
-import com.liaoyb.liteshop.goods.portal.dto.GoodsInfoDto;
-import com.liaoyb.liteshop.goods.portal.dto.GoodsSearchDto;
-import com.liaoyb.liteshop.goods.portal.dto.GoodsSearchResultDto;
-import com.liaoyb.liteshop.goods.portal.entity.Goods;
+import com.liaoyb.liteshop.goods.portal.model.GoodsInfoDto;
+import com.liaoyb.liteshop.goods.portal.model.GoodsSearchResultDto;
+import com.liaoyb.liteshop.goods.portal.model.GoodsSearchVo;
 import com.liaoyb.liteshop.goods.portal.service.GoodsServce;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,15 +32,14 @@ public class GoodsController {
     private GoodsServce goodsServce;
 
     /**
-     *
      * 商品搜索
      *
      * @param search 搜索参数
-     * @param page 分页参数
+     * @param page   分页参数
      * @return 商品搜索列表
      */
     @GetMapping("/goods")
-    public Response<List<GoodsSearchResultDto>, PageMeta> search(@Validated GoodsSearchDto search, Page page) {
+    public Response<List<GoodsSearchResultDto>, PageMeta> search(@Validated GoodsSearchVo search, Page page) {
         log.info("商品搜索：{},{}", search, page);
         PageResult<GoodsSearchResultDto> goodsPage = goodsServce.search(search, page);
         return Response.success(goodsPage.getRecords(), goodsPage.toPageMeta());
@@ -59,8 +57,6 @@ public class GoodsController {
         GoodsInfoDto goodsInfo = goodsServce.getGoodsInfo(goodsId);
         return ResponseUtil.wrapOrNotFound(goodsInfo);
     }
-
-
 
 
 }

@@ -20,6 +20,7 @@
         <module>liteshop-goods</module>
         <module>liteshop-common</module>
         <module>liteshop-registry</module>
+        <module>liteshop-user</module>
     </modules>
 
     <properties>

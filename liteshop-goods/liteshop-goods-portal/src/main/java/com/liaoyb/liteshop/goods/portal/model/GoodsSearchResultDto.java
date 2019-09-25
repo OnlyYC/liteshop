@@ -1,4 +1,4 @@
-package com.liaoyb.liteshop.goods.portal.dto;
+package com.liaoyb.liteshop.goods.portal.model;
 
 import com.liaoyb.liteshop.goods.portal.entity.Goods;
 import lombok.Data;

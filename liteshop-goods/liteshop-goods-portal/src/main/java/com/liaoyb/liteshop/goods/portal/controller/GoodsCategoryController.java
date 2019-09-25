@@ -2,7 +2,7 @@ package com.liaoyb.liteshop.goods.portal.controller;
 
 import com.liaoyb.liteshop.common.domain.EmptyMeta;
 import com.liaoyb.liteshop.common.domain.Response;
-import com.liaoyb.liteshop.goods.portal.dto.GoodsCategoryTreeDto;
+import com.liaoyb.liteshop.goods.portal.model.GoodsCategoryTreeDto;
 import com.liaoyb.liteshop.goods.portal.service.GoodsCategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.UnsatisfiedServletRequestParameterException;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -88,6 +89,18 @@ public class ExceptionUtil {
         return new Error(ex.getParameterName(), ex.getMessage());
     }
 
+
+    /**
+     * 处理方法参数类型不匹配异常
+     *
+     * @param ex 异常
+     * @return 错误信息
+     */
+    public static Error handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
+        String message = String.format("Method Argument Type Mismatch: %s", ex.getName());
+        return new Error(ex.getPropertyName(), message);
+    }
+
     /**
      * 处理请求路径参数缺失校验异常
      *
@@ -114,7 +127,7 @@ public class ExceptionUtil {
      * @param ex 异常
      * @return 错误列表
      */
-    public static List<Error> handleAllException(Exception ex) {
+    public static List<Error> handleAllException(Throwable ex) {
         String key = "";
         String message = ExceptionUtils.getRootCauseMessage(ex);
         return Collections.singletonList(new Error(key, message));

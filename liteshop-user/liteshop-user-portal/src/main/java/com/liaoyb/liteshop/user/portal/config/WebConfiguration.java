@@ -1,4 +1,4 @@
-package com.liaoyb.liteshop.goods.portal.config;
+package com.liaoyb.liteshop.user.portal.config;
 
 import com.liaoyb.liteshop.common.web.mvc.RewriteErrorController;
 import lombok.extern.slf4j.Slf4j;

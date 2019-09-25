@@ -1,4 +1,4 @@
-package com.liaoyb.liteshop.goods.portal.dto;
+package com.liaoyb.liteshop.goods.portal.model;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import javax.validation.constraints.Pattern;
  * @author liaoyb
  */
 @Data
-public class GoodsSearchDto {
+public class GoodsSearchVo {
     /**
      * 关键词
      */

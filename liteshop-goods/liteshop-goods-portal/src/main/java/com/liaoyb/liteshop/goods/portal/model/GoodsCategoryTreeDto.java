@@ -1,4 +1,4 @@
-package com.liaoyb.liteshop.goods.portal.dto;
+package com.liaoyb.liteshop.goods.portal.model;
 
 import lombok.Data;
 

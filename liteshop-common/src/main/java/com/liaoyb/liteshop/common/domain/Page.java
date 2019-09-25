@@ -1,7 +1,5 @@
 package com.liaoyb.liteshop.common.domain;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -68,7 +66,7 @@ public final class Page implements Serializable {
         this.page = page <= 0 ? 1 : page;
     }
 
-    public <T> IPage<T> toPage() {
+    public <T> com.baomidou.mybatisplus.extension.plugins.pagination.Page<T> toPage() {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<T> page = new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(this.page, this.pageSize);
         return page;
     }

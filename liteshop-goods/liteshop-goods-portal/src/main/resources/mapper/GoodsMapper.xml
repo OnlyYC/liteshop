@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liaoyb.liteshop.goods.portal.mapper.GoodsMapper">
+    <select id="search" resultType="com.liaoyb.liteshop.goods.portal.entity.Goods">
+      SELECT id,name,picture,price,original_price,goods_sn,publish_status,verify_status,stock,unit,description,album_pictures,detail_html,
+      detail_mobile_html,created_by,created_date,last_modified_by,last_modified_date FROM liteshop_goods gooods
+      <where>
+          <if test="goodsSearch.keyword!=null and goodsSearch.keyword!=''">
+              AND (name LIKE CONCAT('%', #{goodsSearch.keyword},'%') OR description LIKE CONCAT('%', #{goodsSearch.keyword},'%'))
+          </if>
+          <if test="goodsSearch.categoryId!=null">
+              AND EXISTS (SELECT id FROM liteshop_relation_goods_category category WHERE category.goods_id=gooods.id AND category.goods_category_id=#{goodsSearch.categoryId})
+          </if>
+      </where>
+      <if test="goodsSearch.sort!=null and goodsSearch.direction!=null">
+          ORDER BY ${goodsSearch.sort} ${goodsSearch.direction}
+      </if>
+      <if test="goodsSearch.sort!=null and goodsSearch.direction==null">
+          ORDER BY ${goodsSearch.sort}
+      </if>
+    </select>
+</mapper>
